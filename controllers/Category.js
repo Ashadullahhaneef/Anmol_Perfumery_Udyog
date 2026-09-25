@@ -40,7 +40,7 @@ exports.createTypeCategory = async (req, res) => {
 
 exports.getAllTypeCategories = async (req, res) => {
   try {
-    const categories = await TypeCategory.find({});
+    const categories = await TypeCategory.find({},{new:true});
     if (categories.length != 0) {
       return res.status(200).json({
         success: true,
@@ -65,7 +65,7 @@ exports.deleteTypeCategory = async (req, res) => {
     const { categoryId } = req.params;
     const priceCategoriesUnderIt = await PriceCategory.find({
       typeCategory: categoryId,
-    });
+    },{new:true});
     if (priceCategoriesUnderIt.length > 0) {
       return res.status(400).json({
         success: false,
