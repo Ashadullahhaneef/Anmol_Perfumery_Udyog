@@ -16,6 +16,10 @@ app.use(
     credentials: true,
   }),
 );
+app.use(cookieparser);
+
+const userRoutes = require("./routes/User");
+app.use("/api/v1/auth", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Anmol Perfumery Udyog API is running...");
