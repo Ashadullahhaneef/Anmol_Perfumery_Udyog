@@ -5,6 +5,11 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieparser = require("cookie-parser");
 const dbConnect = require("./config/database");
+const productRoutes = require("./routes/Products");
+const categoryRoutes = require("./routes/Category");
+
+app.use("/api/v1/category", categoryRoutes);
+app.use("/api/v1/product", productRoutes);
 
 dotenv.config();
 dbConnect();

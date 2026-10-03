@@ -85,6 +85,31 @@ exports.getProductByPriceCategory = async (req, res) => {
     });
   }
 };
+exports.getProductDetails = async (req, res) => {
+  try {
+    const { productId } = req.params;
+    const product = await Product.findById(productId).populate({
+      path: "priceCategory",
+      populate: { path: "typeCategory" },
+    });
+    if (!product) {
+      return res.status(401).json({
+        success: false,
+        message: "product not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Product fetch successfully",
+      data: product,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "product doestnot fetching ,please try again",
+    });
+  }
+};
 
 exports.updateProduct = async (req, res) => {
   try {

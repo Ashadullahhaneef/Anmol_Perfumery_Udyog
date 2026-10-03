@@ -33,7 +33,7 @@ exports.createPriceCategory = async (req, res) => {
   });
 };
 
-exports.getPriceCategoriesType = async (req, res) => {
+exports.getPriceCategoriesByType = async (req, res) => {
   try {
     const { typeCategoryId } = req.params;
     const priceCategories = await PriceCategory.find(
